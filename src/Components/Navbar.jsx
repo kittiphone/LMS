@@ -298,12 +298,12 @@ export default function Navbar() {
                     </a>
                   </div>
                   <div className="flow-root">
-                    <a
-                      href="#"
+                    <Link
+                      to="register"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Create account
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -491,12 +491,12 @@ export default function Navbar() {
                     Sign in
                   </a>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
+                  <Link
+                    to="/register"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Create account
-                  </a>
+                  </Link>
                 </div>
 
                 {/* <div className="hidden lg:ml-8 lg:flex">
