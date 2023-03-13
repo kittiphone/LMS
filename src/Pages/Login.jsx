@@ -32,7 +32,7 @@ export default function Login() {
         // If the login was successful, save the user's token in localStorage
         localStorage.setItem("token", token);
         // Redirect to the home page
-        navigate("/alumn", { replace: true });
+        navigate("/Profile", { replace: true });
       } else {
         // If the login failed, show an error message
         toast.error("Invalid email or password");
@@ -41,6 +41,8 @@ export default function Login() {
       console.error("Error:", error);
     }
   };
+
+
 
 
   return (
