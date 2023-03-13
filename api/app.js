@@ -8,12 +8,15 @@ app.use(cors());
 
 // Import userController
 const userController = require("./controllers/userController");
+const GoogleLoginController = require("./controllers/GoogleLogin");
 
 // Set up routes for userController
 app.post("/registerWithCheck", jsonParser, userController.registerWithCheck);
 app.post("/login", jsonParser, userController.login);
 app.post("/authen", jsonParser, userController.authen);
 app.get("/user_detail", jsonParser, userController.user_detail);
+app.post("/googleLogin", jsonParser, GoogleLoginController.GoogleLogin);
+
 
 // Create connection to database
 const mysql = require("mysql2");

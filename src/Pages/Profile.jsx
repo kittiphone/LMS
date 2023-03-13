@@ -25,6 +25,7 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import UserAuth from '../Services/UserAuth'
 import {
   Bars3Icon,
   BellIcon,
@@ -68,10 +69,12 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  UserAuth(); // <-- call the UserAuth function to check if user is logged in
   const [availableToHire, setAvailableToHire] = useState(true)
   const [privateAccount, setPrivateAccount] = useState(false)
   const [allowCommenting, setAllowCommenting] = useState(true)
   const [allowMentions, setAllowMentions] = useState(true)
+
 
   return (
     <div>
