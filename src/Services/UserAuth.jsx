@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const UserAuth = () => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // <-- set initial state to false
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -33,7 +32,7 @@ const UserAuth = () => {
       });
   }, [navigate]);
 
-  return isLoggedIn; // <-- return the isLoggedIn state variable
+  return null; // <-- return null 
 };
 
 export default UserAuth;

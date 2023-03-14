@@ -36,11 +36,7 @@ export default function Footer(){
             <div className="grid grid-cols-1 md:grid-flow-col md:auto-rows-min md:grid-cols-12 md:gap-x-8 md:gap-y-16">
               {/* Image section */}
               <div className="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
-                <img
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt=""
-                  className="h-8 w-auto"
-                />
+
               </div>
     
               {/* Sitemap sections */}

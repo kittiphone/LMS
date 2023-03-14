@@ -1,24 +1,24 @@
 import { LifebuoyIcon, NewspaperIcon, PhoneIcon } from '@heroicons/react/24/outline'
 const supportLinks = [
     {
-      name: 'Sales',
+      name: 'Regular assessments and feedback to track progress',
       href: '#',
       description:
-        'Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.',
+        'Regular assessments and feedback help track your progress and improve your learning experience',
       icon: PhoneIcon,
     },
     {
-      name: 'Technical Support',
+      name: 'Certification upon successful completion of the course',
       href: '#',
       description:
-        'Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.',
+        'Successful completion of the course leads to certification, which can enhance your career prospects in the tourism industry',
       icon: LifebuoyIcon,
     },
     {
-      name: 'Media Inquiries',
+      name: 'Opportunities for practical training and hands-on experience',
       href: '#',
       description:
-        'Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.',
+        'Opportunities for practical training and hands-on experience allow you to apply what you are learned in real-world situations',
       icon: NewspaperIcon,
     },
   ]
@@ -36,14 +36,12 @@ export default function Header(){
               src="https://www.8booking.la/assets/img/about_us/Untitled-7-03.jpg"
               alt=""
             />
-            <div className="absolute inset-0 bg-gray-500 mix-blend-multiply" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" aria-hidden="true" />
           </div>
           <div className="relative mx-auto max-w-7xl py-24 px-6 sm:py-32 lg:px-8">
             <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">8booking.biz</h1>
             <p className="mt-6 max-w-3xl text-xl text-gray-300">
-8booking.biz is a part of Lao E-Tourism project under collaboration between FACNS Sole Company, Small and Medium Enterprise Promotion Association of Lao PDR and Ministry of Information, Culture and Tourism.
-
-Our goal is for helping Micro Enterprise, Small and Medium Enterprises related to Lao tourism sector gradually recovering after 2 years suffering from COVID19 Pandemic and unprecedent economic difficulty.
+            Our Learning Management System (LMS) is designed to provide you with a seamless and effective learning experience. With a user-friendly interface and easy navigation, you can access course materials and resources anytime, anywhere. Our LMS allows you to interact with fellow learners, participate in discussions and exchange ideas, and receive feedback and guidance from experienced instructors and industry experts. You can track your progress, monitor your performance, and access your grades and assessments at your convenience. Join our Lao Tourist Guild Course and take advantage of our innovative LMS to enhance your knowledge, skills, and career prospects in the tourism industry.
             </p>
           </div>
         </div>
@@ -63,11 +61,7 @@ Our goal is for helping Micro Enterprise, Small and Medium Enterprises related t
                   <h3 className="text-xl font-medium text-gray-900">{link.name}</h3>
                   <p className="mt-4 text-base text-gray-500">{link.description}</p>
                 </div>
-                <div className="rounded-bl-2xl rounded-br-2xl bg-gray-50 p-6 md:px-8">
-                  <a href={link.href} className="text-base font-medium text-indigo-700 hover:text-indigo-600">
-                    Contact us<span aria-hidden="true"> &rarr;</span>
-                  </a>
-                </div>
+
               </div>
             ))}
           </div>

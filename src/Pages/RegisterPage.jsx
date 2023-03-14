@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required("Confirm Password is required"),
   });
 
-export default function Register() {
+export default function RegisterPage() {
   // Use the useForm hook to handle form submission and validation
   const {
     register,
