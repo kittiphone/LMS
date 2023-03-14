@@ -6,7 +6,7 @@ import UserCheck from "../Services/UserCheck";
 
 const navigation = {
   pages: [
-    { name: "Home", href: "HomePage" },
+    { name: "Home", href: "Home" },
     { name: "Contact", href: "#" },
     { name: "Infomation", href: "#" },
   ],
@@ -23,13 +23,13 @@ export default function Navbar() {
   const isLoggedIn = UserCheck();
   const userNavigation = isLoggedIn
     ? [
-        { name: "Your Profile", href: "/profile" },
+        { name: "Your Profile", href: "/Profile" },
         { name: "Settings", href: "#" },
         { name: "Sign out", onClick: handleLogout },
       ]
     : [
-        { name: "Login", href: "/login" },
-        { name: "Register", href: "/register" },
+        { name: "Login", href: "/Login" },
+        { name: "Register", href: "/Register" },
       ];
 
   const user = isLoggedIn
@@ -126,9 +126,9 @@ export default function Navbar() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-blue-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        {/* <p className="flex h-10 items-center justify-center bg-blue-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over $100
-        </p>
+        </p> */}
 
         <nav
           aria-label="Top"
@@ -147,7 +147,7 @@ export default function Navbar() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0 flex-grow justify-center lg:justify-start">
-                <Link to="/">
+                <Link to="Home">
                   <img
                     className="h-20 w-auto"
                     src="https://www.8booking.la/assets//8booking-x-MICT-1.png"

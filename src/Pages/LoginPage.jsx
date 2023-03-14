@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   password: yup.string().required("Password is required"),
 });
 
-export default function Login() {
+export default function LoginPage() {
   // Use the useForm hook to handle form submission and validation
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),

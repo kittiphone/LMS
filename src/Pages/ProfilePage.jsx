@@ -68,8 +68,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
-  UserAuth(); // <-- call the UserAuth function to check if user is logged in
+export default function ProfilePage() {
+
+  
+
   const [availableToHire, setAvailableToHire] = useState(true)
   const [privateAccount, setPrivateAccount] = useState(false)
   const [allowCommenting, setAllowCommenting] = useState(true)
@@ -78,6 +80,9 @@ export default function Example() {
 
   return (
     <div>
+      {/* call the UserAuth function to check if user is logged in */}
+      <UserAuth />
+
       <Disclosure as="div" className="relative overflow-hidden bg-sky-700 pb-32">
 
             <div
@@ -438,6 +443,8 @@ export default function Example() {
           </div>
         </div>
       </main>
+    
     </div>
+
   )
 }
