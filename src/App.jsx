@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import HomePage from "./Pages/HomePage";
@@ -7,7 +8,14 @@ import Course from "./Pages/CoursePage";
 import Test from "./Pages/Test";
 import { Routes, Route,Navigate } from "react-router-dom";
 import RegisterPage from "./Pages/RegisterPage";
+import { useLocation } from "react-router-dom";
+
 export default function App() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="bg-gray-50">
       <Navbar />
@@ -20,6 +28,7 @@ export default function App() {
         <Route path="/Course/:courseId" element={<Course/>}/>
         <Route path="/Test" element={<Test/>}/>
       </Routes>
+      
       <Footer />
     </div>
   );
