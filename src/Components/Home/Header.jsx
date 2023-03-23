@@ -1,4 +1,5 @@
 import { LifebuoyIcon, NewspaperIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import Typed from 'react-typed';
 const supportLinks = [
     {
       name: 'Regular assessments and feedback to track progress',
@@ -23,9 +24,6 @@ const supportLinks = [
     },
   ]
 export default function Header(){
-
-
-
     return(
         <div className="bg-white">
         {/* Header */}
@@ -39,7 +37,8 @@ export default function Header(){
             <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" aria-hidden="true" />
           </div>
           <div className="relative mx-auto max-w-7xl py-24 px-6 sm:py-32 lg:px-8">
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">8booking.biz</h1>
+            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"> <Typed strings={['8booking.la','LMS']} typeSpeed={70} backSpeed={90} loop /></h1>
+         
             <p className="mt-6 max-w-3xl text-xl text-gray-300">
             Our Learning Management System (LMS) is designed to provide you with a seamless and effective learning experience. With a user-friendly interface and easy navigation, you can access course materials and resources anytime, anywhere. Our LMS allows you to interact with fellow learners, participate in discussions and exchange ideas, and receive feedback and guidance from experienced instructors and industry experts. You can track your progress, monitor your performance, and access your grades and assessments at your convenience. Join our Lao Tourist Guild Course and take advantage of our innovative LMS to enhance your knowledge, skills, and career prospects in the tourism industry.
             </p>
