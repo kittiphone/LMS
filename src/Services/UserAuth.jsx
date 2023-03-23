@@ -9,7 +9,7 @@ const UserAuth = () => {
     const token = localStorage.getItem('token');
     axios
       .post(
-        'http://localhost:3000/authen',
+        'http://localhost:3000/user/authen',
         {},
         {
           headers: {

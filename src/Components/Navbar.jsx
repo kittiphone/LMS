@@ -114,7 +114,7 @@ export default function Navbar() {
                       className="block h-auto w-5 flex-shrink-0"
                     />
                     <span className="ml-3 block text-base font-medium text-gray-900">
-                      CAD
+                      LAK
                     </span>
                     <span className="sr-only">, change currency</span>
                   </a>
@@ -185,7 +185,7 @@ export default function Navbar() {
                           className="block h-auto w-5 flex-shrink-0"
                         />
                         <span className="ml-3 block text-sm font-medium">
-                          CAD
+                          LAK
                         </span>
                         <span className="sr-only">, change currency</span>
                       </a>

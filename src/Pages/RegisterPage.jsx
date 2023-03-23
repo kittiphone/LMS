@@ -40,7 +40,7 @@ export default function RegisterPage() {
 const onSubmit = async (data) => {
     try {
       // Send a POST request to the server to log in the user
-      const response = await axios.post("http://localhost:3000/registerWithCheck", data);
+      const response = await axios.post("http://localhost:3000/user/registerWithCheck", data);
       const { status } = response.data;
       if (status === "ok") {
         toast.success("Registration successful! Please log in.");

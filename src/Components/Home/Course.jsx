@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CourseAdd from './CourseAdd';
 const blogPosts = [
   {
     id: 1,
@@ -28,8 +29,14 @@ export default function Course() {
   return (
     <main>
       {/* Blog section */}
+      <div class="flex justify-center p-8">
+    <CourseAdd />
+</div>
 
-      <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
+
+ 
+  
+      <div className="relative bg-gray-50 pb-8 sm:pb-12 lg:pb-24">
         <div className="relative">
 
           <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
