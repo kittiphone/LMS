@@ -4,14 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const secret = 'Fullstack-Login-2021';
-
-// create the connection to database
-const mysql = require("mysql2");
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "mydb",
-});
+const connection = require('../models/database.utils');
 
 
 
@@ -81,10 +74,6 @@ exports.user_detail = function(req, res, next) {
 
 
 
-
-
-
-
 exports.login = function(req, res, next) {
   connection.execute(
     'SELECT * FROM tbl_users WHERE email = ?',
@@ -118,4 +107,20 @@ exports.authen = function(req, res, next) {
   } catch (err) {
     res.json({ status: 'error', message: err.message })
   }
+};
+
+
+exports.test = function(req, res, next) {
+  const { email, password, plan, option1 } = req.body;
+
+  const sql = `INSERT INTO test (email, password, plan, option1) VALUES (?, ?, ?, ?)`;
+  const values = [email, password, plan, option1];
+
+  connection.query(sql, values, function (err, result) {
+    if (err) {
+      res.json({status: 'error', message: err});
+    } else {
+      res.json({status: 'ok', message: 'Data inserted successfully'});
+    }
+  });
 };

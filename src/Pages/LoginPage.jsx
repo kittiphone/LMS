@@ -26,7 +26,7 @@ export default function LoginPage() {
   const onSubmit = async (data) => {
     try {
       // Send a POST request to the server to log in the user
-      const response = await axios.post("http://localhost:3000/login", data);
+      const response = await axios.post("http://localhost:3000/user/login", data);
       const { status, token } = response.data;
       if (status === "ok") {
         // If the login was successful, save the user's token in localStorage

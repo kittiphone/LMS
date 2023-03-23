@@ -3,28 +3,19 @@ const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
+const connection = require("./models/database.utils");
+const userRoutes = require("./routes/userRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const courseRoutes = require("./routes/courseRoutes");
 
 app.use(cors());
-
-// Import userController
-const userController = require("./controllers/userController");
-const GoogleLoginController = require("./controllers/GoogleLogin");
-
-// Set up routes for userController
-app.post("/registerWithCheck", jsonParser, userController.registerWithCheck);
-app.post("/login", jsonParser, userController.login);
-app.post("/authen", jsonParser, userController.authen);
-app.get("/user_detail", jsonParser, userController.user_detail);
-app.post("/googleLogin", jsonParser, GoogleLoginController.GoogleLogin);
+app.use(bodyParser.json());
 
 
-// Create connection to database
-const mysql = require("mysql2");
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "mydb",
-});
+
+app.use("/user", userRoutes);
+app.use("/profile", profileRoutes);
+app.use("/course", courseRoutes);
 
 connection.connect((err) => {
   if (err) {
