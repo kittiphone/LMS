@@ -44,10 +44,24 @@ exports.courseUpdate = function (req, res, next) {
   );
 };
 
+exports.coursesGet = function(req, res, next) {
+  connection.query("SELECT * FROM tbl_course", function(err, results, fields) {
+    if (err) {
+      res.json({ status: "error", message: err });
+      return;
+    } else {
+      res.json({ status: "ok", data: results });
+    }
+  });
+};
+
+
+
 exports.courseDelete = function (req, res, next) {
+  const courseId = req.params.course_id;
   connection.execute(
     "DELETE FROM tbl_course WHERE course_id = ?",
-    [req.body.course_id],
+    [courseId],
     function (err, results, fields) {
       if (err) {
         res.json({ status: "error", message: err });
@@ -62,3 +76,5 @@ exports.courseDelete = function (req, res, next) {
     }
   );
 };
+
+
