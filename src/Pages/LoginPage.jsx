@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE_URL } from "../api/config";
 
 // Define the validation schema for the form fields using Yup
 const schema = yup.object().shape({
@@ -26,7 +27,7 @@ export default function LoginPage() {
   const onSubmit = async (data) => {
     try {
       // Send a POST request to the server to log in the user
-      const response = await axios.post("http://localhost:3000/user/login", data);
+      const response = await axios.post(`${API_BASE_URL}/user/login`, data);
       const { status, token } = response.data;
       if (status === "ok") {
         // If the login was successful, save the user's token in localStorage
