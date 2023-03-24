@@ -1,8 +1,9 @@
 export default function CourseAdd() {
+//what is redux toolkit? 
   return (
     <div>
       <label for="my-modal-4" class="btn">
-        Add Course
+        Add Course  
       </label>
       <input type="checkbox" id="my-modal-4" class="modal-toggle" />
       <label for="my-modal-4" class="modal cursor-pointer">
@@ -16,7 +17,7 @@ export default function CourseAdd() {
           />
           <p class="py-4">
             You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
+            use Wikipedia for free!v
           </p>
         </label>
       </label>
