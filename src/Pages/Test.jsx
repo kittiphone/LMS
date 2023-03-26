@@ -1,93 +1,57 @@
-import React, { useState } from 'react';
-
-const steps = [
-  { title: 'Register' },
-  { title: 'Choose plan' },
-  { title: 'Purchase' },
-  { title: 'Receive product' }
-];
-
-const FormWithSteps = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const handleNextStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
-  };
-
-  const handlePreviousStep = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
-  };
+/*
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+*/
+const posts = [
+  {
+    title: 'Boost your conversion rate',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+    date: 'Mar 16, 2020',
+    datetime: '2020-03-16',
+  },
+  {
+    title: 'How to use search engine optimization to drive sales',
+    href: '#',
+    description: 'Optio cum necessitatibus dolor voluptatum provident commodi et. Qui aperiam fugiat nemo cumque.',
+    date: 'Mar 10, 2020',
+    datetime: '2020-03-10',
+  },
+  {
+    title: 'Improve your customer experience',
+    href: '#',
+    description:
+      'Cupiditate maiores ullam eveniet adipisci in doloribus nulla minus. Voluptas iusto libero adipisci rem et corporis.',
+    date: 'Feb 12, 2020',
+    datetime: '2020-02-12',
+  },
+  {
+    title: 'Writing effective landing page copy',
+    href: '#',
+    description:
+      'Ipsum voluptates quia doloremque culpa qui eius. Id qui id officia molestias quaerat deleniti. Qui facere numquam autem libero quae cupiditate asperiores vitae cupiditate. Cumque id deleniti explicabo.',
+    date: 'Jan 29, 2020',
+    datetime: '2020-01-29',
+  },
+]
 
   return (
-    <div className="max-w-md mx-auto">
-      <ul className="steps steps-vertical lg:steps-horizontal">
-        {steps.map((step, index) => (
-          <li
-            key={index}
-            className={`step ${currentStep === index ? 'step-primary' : ''}`}
-          >
-            {step.title}
-          </li>
-        ))}
-      </ul>
+    <div className="bg-white px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
+      <div className="relative mx-auto max-w-lg divide-y-2 divide-gray-200 lg:max-w-7xl">
 
-      <form>
-        {/* Render form inputs based on the current step */}
-        {currentStep === 0 && (
-          <>
-            <label htmlFor="name">Name:</label>
-            <input type="text" className='input input-bordered input-primary w-full max-w-xs' name="name" id="name" />
-          </>
-        )}
-        {currentStep === 1 && (
-          <>
-            <label htmlFor="plan">Choose a plan:</label>
-            <select name="plan" id="plan">
-              <option value="basic">Basic</option>
-              <option value="premium">Premium</option>
-            </select>
-          </>
-        )}
-        {currentStep === 2 && (
-          <>
-            <label htmlFor="credit-card">Credit card number:</label>
-            <input type="text" name="credit-card" id="credit-card" />
-          </>
-        )}
-        {currentStep === 3 && (
-          <>
-            <p>Thank you for your purchase!</p>
-          </>
-        )}
 
-        {/* Render previous and next buttons based on the current step */}
-        <div className="mt-8 flex justify-between">
-          {currentStep > 0 && (
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handlePreviousStep}
-            >
-              Previous
-            </button>
-          )}
-          {currentStep < steps.length - 1 ? (
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleNextStep}
-            >
-              Next
-            </button>
-          ) : (
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          )}
-        </div>
-      </form>
+      </div>
     </div>
-  );
-};
-
-export default FormWithSteps;
+  )
+}

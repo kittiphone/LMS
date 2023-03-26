@@ -1,0 +1,56 @@
+.step-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    }
+    
+    .step-content-active {
+    opacity: 1;
+    }
+    
+    .step-content-inactive {
+    opacity: 0;
+    pointer-events: none;
+    }
+
+    .steps {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .step {
+        position: relative;
+        flex: 1;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        padding: 10px 0;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .step-primary {
+        color: #1a202c;
+        border-bottom: 2px solid #4a5568;
+      }
+      
+      .step-completed {
+        color: #1a202c;
+        border-bottom: 2px solid #2d3748;
+      }
+      .step-indicator {
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #4a5568;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .step-primary .step-indicator {
+        background-color: #2d3748;
+      }
+      
