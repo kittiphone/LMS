@@ -35,7 +35,6 @@ export default function CourseAdd(props) {
     resolver: yupResolver(validationSchema),
   });
 
-
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
@@ -59,7 +58,6 @@ export default function CourseAdd(props) {
       console.log(error);
     }
   };
-
 
   return (
     <div>
