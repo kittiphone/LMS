@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { API_BASE_URL } from "../api/config";
 const UserCheck = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // <-- set initial state to false
@@ -10,7 +10,7 @@ const UserCheck = () => {
     const token = localStorage.getItem('token');
     axios
       .post(
-        'http://localhost:3000/authen',
+        `${API_BASE_URL}/user/authen`,
         {},
         {
           headers: {

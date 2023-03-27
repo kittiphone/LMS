@@ -1,35 +1,57 @@
+import { useState, useEffect,useRef  } from "react";
 import { Link } from "react-router-dom";
-const blogPosts = [
-  {
-    id: 1,
-    course: "10days",
-    title: "Become a knowledgeable tourist guide in just 10 days",
-    href: "#",
-    category: { name: "Course", href: "#" },
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-    preview:
-      "Our 10-day course is designed for those who are new to the industry and want to get started quickly. In this course, you will learn the basics of guiding, including customer service, communication skills, and safety guidelines.",
-  },
-  {
-    id: 2,
-    course: "30days",
-    title: "Become a professional tourist guide in 30 days",
-    href: "#",
-    category: { name: "Course", href: "#" },
-    imageUrl:
-      "https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-    preview:
-      "Our 30-day course is a more comprehensive program that goes into greater depth on the topics covered in the 10-day course. In addition to the basics, you will also learn about more specialized areas such as ecotourism, adventure tourism, and cultural tourism. ",
-  },
-];
+import CourseAdd from './CourseAdd';
+import CourseDelete from './CourseDelete';
+import axios from "axios";
 
 export default function Course() {
+  const [courses, setCourses] = useState({ data: [] });
+  const coursesContainerRef = useRef(null);
+
+
+  const handleAddCourse = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/course/courseGet");
+  
+      if (response.status === 200) {
+        setCourses(response.data);
+
+        // Scroll to the last course after updating the state
+        const coursesArray = coursesContainerRef.current.children;
+        coursesArray[coursesArray.length - 1].scrollIntoView({ behavior: "smooth" });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/course/courseGet");
+  
+        if (response.status === 200) {
+          setCourses(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchCourse();
+  }, [handleAddCourse]);
+
+
+
+
   return (
     <main>
       {/* Blog section */}
+      <div class="flex justify-center p-8">
+      <CourseAdd onAddCourse={handleAddCourse} coursesContainerRef={coursesContainerRef} />
+</div>
 
-      <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
+      <div className="relative bg-gray-50 pb-8 sm:pb-12 lg:pb-24" >
         <div className="relative">
 
           <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
@@ -42,10 +64,10 @@ export default function Course() {
               with in-depth knowledge about Laos' rich culture and history.
             </p>
           </div>
-          <div className="mx-auto mt-12 grid max-w-md gap-8 px-6 sm:max-w-lg lg:max-w-7xl lg:grid-cols-2 lg:px-8">
-            {blogPosts.map((post) => (
+          <div className="mx-auto mt-12 grid max-w-md gap-8 px-6 sm:max-w-lg lg:max-w-7xl lg:grid-cols-2 lg:px-8" ref={coursesContainerRef}>
+            {courses.data.map((post) => (
               <div
-                key={post.id}
+                key={post.course_id}
                 className="flex flex-col overflow-hidden rounded-lg shadow-lg"
               >
               <Link to={`/Course/${post.course}`}>
@@ -84,6 +106,10 @@ export default function Course() {
                       <button type="submit">Regeister now!</button>
                       
                     </Link>
+               
+                  </div>
+                  <div className="mt-6 flex items-center">
+            <CourseDelete courseId={post.course_id} courses={courses} setCourses={setCourses}/>
                   </div>
                 </div>
               </div>

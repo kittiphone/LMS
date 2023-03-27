@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 const Stepper = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [plan, setPlan] = useState("");
+  const [formData, setFormData] = useState({});
+  const [option1, setoption1] = useState("");
 
   const handleStepChange = (step) => setCurrentStep(step);
   const handleNext = () => setCurrentStep(currentStep + 1);
@@ -12,7 +15,8 @@ const Stepper = () => {
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handlePlanChange = (event) => setPlan(event.target.value);
-  const handleOptionChange = (event) => console.log(event.target.value);
+  const handleoption1Change = (event) => setoption1(event.target.value);
+
 
   const Course = () => {
     const { courseId } = useParams();

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { API_BASE_URL } from "../api/config";
 const UserAuth = () => {
   const navigate = useNavigate();
 
@@ -9,7 +9,7 @@ const UserAuth = () => {
     const token = localStorage.getItem('token');
     axios
       .post(
-        'http://localhost:3000/authen',
+        `${API_BASE_URL}/user/authen`,
         {},
         {
           headers: {

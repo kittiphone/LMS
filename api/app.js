@@ -1,42 +1,38 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
-const bodyParser = require("body-parser");
-const jsonParser = bodyParser.json();
 
+// Import required modules
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const connection = require('./models/database.utils');
+const userRoutes = require('./routes/userRoutes');
+const profileRoutes = require('./routes/profileRoutes');
+const courseRoutes = require('./routes/courseRoutes');
+
+// Create an express application.
+const app = express();
+
+// Enable Cross-Origin Resource Sharing (CORS) for all routes.
 app.use(cors());
 
-// Import userController
-const userController = require("./controllers/userController");
-const GoogleLoginController = require("./controllers/GoogleLogin");
+// Parse JSON bodies of incoming HTTP requests.
+app.use(bodyParser.json());
 
-// Set up routes for userController
-app.post("/registerWithCheck", jsonParser, userController.registerWithCheck);
-app.post("/login", jsonParser, userController.login);
-app.post("/authen", jsonParser, userController.authen);
-app.get("/user_detail", jsonParser, userController.user_detail);
-app.post("/googleLogin", jsonParser, GoogleLoginController.GoogleLogin);
+// Mount the application's routes
+app.use('/user', userRoutes);
+app.use('/profile', profileRoutes);
+app.use('/course', courseRoutes);
 
-
-// Create connection to database
-const mysql = require("mysql2");
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "mydb",
-});
-
+// Connect to the database.
 connection.connect((err) => {
   if (err) {
-    console.error("Failed to connect to database.");
+    console.error('Failed to connect to the database');
     throw err;
-  } else {
-    console.log("Connected to database!");
   }
+  console.log('Connected to the database!');
 });
 
-app.listen(3000, function () {
-  console.log("CORS-enabled web server listening on port 3000");
-});
+// Start listening to incoming HTTP requests.
+app.listen(3000, () => console.log('Server running on port 3000'));
 
+// Export the express application object as a module.
 module.exports = app;
