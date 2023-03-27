@@ -34,188 +34,70 @@ const Stepper = () => {
     return courseId !== "10days" && courseId !== "30days";
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      email: email,
-      password: password,
-      plan: plan,
-      option1: option1,
-    };
-    axios.post("http://localhost:3000/user/test", data)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-  
-  
-
   const renderStep = (stepNumber) => {
-    const stepoption1s = ["Basic", "Pro", "Premium"];
-    useEffect(() => {
-      console.log(formData);
-    }, [formData]);
+    const stepLabels = ["Register", "Choose plan", "Payment"];
+    const stepOptions = ["Basic", "Pro", "Premium"];
 
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div className="mt-6">
-            <label className="block">
-              <span className="text-gray-700">
-           
-              </span>
-              {stepNumber === 1 && (
-                <div class="grid md:grid-cols-2 gap-4 w-full">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      FirstName And Lastname
-                    </label>
-                    <input
-                      type="email"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={email}
-                      onChange={handleEmailChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      Village
-                    </label>
-                    <input
-                      type="password"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={password}
-                      onChange={handlePasswordChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      Data of birth
-                    </label>
-                    <input
-                      type="password"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={password}
-                      onChange={handlePasswordChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      City
-                    </label>
-                    <input
-                      type="password"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={password}
-                      onChange={handlePasswordChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      Age
-                    </label>
-                    <input
-                      type="password"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={password}
-                      onChange={handlePasswordChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      Province
-                    </label>
-                    <input
-                      type="password"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={password}
-                      onChange={handlePasswordChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      Tel
-                    </label>
-                    <input
-                      type="password"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={password}
-                      onChange={handlePasswordChange}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      class="block text-sm font-medium text-gray-700"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="password"
-                      class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                      value={password}
-                      onChange={handlePasswordChange}
-                    />
-                  </div>
+      <div className="mt-6">
+        <label className="block">
+          <span className="text-gray-700">{stepLabels[stepNumber - 1]}</span>
+          {stepNumber === 1 && (
+            <>
+              <div class="grid md:grid-cols-2 gap-4 w-full">
+                <div>
+                  <label
+                    htmlFor="email"
+                    class="block text-sm font-medium text-gray-700">
+                   Email
+                  </label>
+                  <input
+                    type="email"
+                    class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    value={email}
+                    onChange={handleEmailChange}
+                  />
                 </div>
-              )}
-              {stepNumber === 2 && (
-                <select
-                  className="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                  value={plan}
-                  onChange={handlePlanChange}
-                >
-                  {stepoption1s.map((option1) => (
-                    <option1 key={option1}>{option1}</option1>
-                  ))}
-                </select>
-              )}
-              {stepNumber === 3 && (
-                <div class="flex justify-between">
-                  <select
-                    className="input w-4/5 border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 mr-4"
-                    onChange={handleoption1Change}
+                <div>
+                  <label
+                    htmlFor="password"
+                    class="block text-sm font-medium text-gray-700"
                   >
-                    {stepoption1s.map((option1) => (
-                      <option1 key={option1}>{option1}</option1>
-                    ))}
-                  </select>
-                  <button
-                    className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
-                    type="submit"
-                  >
-                    Submit
-                  </button>
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    class="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
                 </div>
-              )}
-            </label>
-          </div>
-        </div>
-      </form>
+              </div>
+            </>
+          )}
+          {stepNumber === 2 && (
+            <select
+              className="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              value={plan}
+              onChange={handlePlanChange}
+            >
+              {stepOptions.map((option) => (
+                <option key={option}>{option}</option>
+              ))}
+            </select>
+          )}
+          {stepNumber === 3 && (
+            <select
+              className="input mt-1 block w-full border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              onChange={handleOptionChange}
+            >
+              {stepOptions.map((option) => (
+                <option key={option}>{option}</option>
+              ))}
+            </select>
+          )}
+        </label>
+      </div>
     );
   };
 
@@ -227,7 +109,6 @@ const Stepper = () => {
             <h1 className="card-title">
               <Course />
             </h1>
-
             <div className="steps">
               {["Register", "Choose plan", "Payment"].map((label, index) => (
                 <div
