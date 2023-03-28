@@ -7,29 +7,32 @@ import axios from "axios";
 export default function Course() {
   const [courses, setCourses] = useState({ data: [] });
 
-  useEffect(() => {
-    const fetchCourse = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/course/courseGet");
+  const fetchCourseData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/course/courseGet");
 
-        if (response.status === 200) {
-          setCourses(response.data);
-        }
-      } catch (error) {
-        console.error(error);
+      if (response.status === 200) {
+        setCourses(response.data);
       }
-    };
-  
-    fetchCourse();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchCourseData();
   }, []);
+
+  const handleCourseAdded = () => {
+    fetchCourseData();
+  }
 
   return (
     <main>
       {/* Blog section */}
       <div class="flex justify-center p-8">
-    <CourseAdd />
-</div>
-
+        <CourseAdd onCourseAdded={handleCourseAdded} />
+      </div>
 
  
   
@@ -91,7 +94,8 @@ export default function Course() {
                
                   </div>
                   <div className="mt-6 flex items-center">
-            <CourseDelete courseId={post.course_id} />
+            <CourseDelete courseId={post.course_id} courses={courses} setCourses={setCourses} />
+
                   </div>
                 </div>
               </div>

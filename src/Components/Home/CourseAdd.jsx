@@ -1,11 +1,14 @@
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function CourseAdd() {
+  const navigate = useNavigate();
   const defaultValues = {
     course: "",
     category: "",
@@ -21,6 +24,8 @@ export default function CourseAdd() {
       .required("Image URL is required"),
     preview: Yup.string().required("Preview URL is required"),
   });
+
+
 
   const {
     register,
@@ -39,19 +44,22 @@ export default function CourseAdd() {
         "http://localhost:3000/course/courseAdd",
         data
       );
-      const { status } = response.data;
+      const { status, newCourse } = response.data;
       if (status === "ok") {
-        toast.success(" successful!");
+      toast.success("Course added successfully!");
+      // alert("Course added successfully!");
+        navigate("/");
+
+     
       }
-      reset(defaultValues);
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   return (
     <div>
-   <ToastContainer />
+
       <label
         htmlFor="my-modal-5"
         className="btn bg-gradient-to-br border-none from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium"
@@ -61,7 +69,7 @@ export default function CourseAdd() {
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
       <label htmlFor="my-modal-5" className="modal cursor-pointer over">
         <form
-          onSubmit={handleSubmit(onSubmit)}
+         onSubmit={handleSubmit(onSubmit)}
           className="modal-box relative w-10000"
           noValidate
         >
@@ -120,6 +128,7 @@ export default function CourseAdd() {
             </button>
           </p>
         </form>
+        <ToastContainer />
       </label>
     </div>
   );
