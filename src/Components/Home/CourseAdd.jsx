@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function CourseAdd() {
-  const navigate = useNavigate();
+export default function CourseAdd(props) {
+  const [modalOpen, setModalOpen] = useState(false);
   const defaultValues = {
     course: "",
     category: "",
@@ -24,8 +23,6 @@ export default function CourseAdd() {
       .required("Image URL is required"),
     preview: Yup.string().required("Preview URL is required"),
   });
-
-
 
   const {
     register,
@@ -44,32 +41,37 @@ export default function CourseAdd() {
         "http://localhost:3000/course/courseAdd",
         data
       );
-      const { status, newCourse } = response.data;
+      const { status } = response.data;
       if (status === "ok") {
-      toast.success("Course added successfully!");
-      // alert("Course added successfully!");
-        navigate("/");
-
-     
+        toast.success("Course added successfully!");
+        // Call the onAddCourse prop to update the courses state
+        if (typeof props.onAddCourse === "function") {
+          props.onAddCourse();
+        }
+        if (props.coursesContainerRef.current) {
+          props.coursesContainerRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+        setModalOpen(false);
       }
+      reset(defaultValues);
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   return (
     <div>
-
+   <ToastContainer />
       <label
         htmlFor="my-modal-5"
         className="btn bg-gradient-to-br border-none from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium"
       >
         Add Course
       </label>
-      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
-      <label htmlFor="my-modal-5" className="modal cursor-pointer over">
+      <input type="checkbox" id="my-modal-5" className="modal-toggle" checked={modalOpen} onChange={() => setModalOpen(!modalOpen)} />
+      <label htmlFor="my-modal-5" className="modal cursor-pointer over" >
         <form
-         onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
           className="modal-box relative w-10000"
           noValidate
         >
@@ -128,7 +130,6 @@ export default function CourseAdd() {
             </button>
           </p>
         </form>
-        <ToastContainer />
       </label>
     </div>
   );

@@ -46,7 +46,7 @@ exports.user_detail = function(req, res, next) {
     const decoded = jwt.verify(token, secret);
     const userId = decoded.id;
 
-    connection.execute('SELECT * FROM tbl_users WHERE user = ?', [userId], function(err, rows, fields) {
+    connection.execute('SELECT * FROM tbl_users WHERE user_id = ?', [userId], function(err, rows, fields) {
       if (err) {
         console.error(err);
         res.status(500).json({ status: 'error', message: 'An unexpected error occurred' });
@@ -83,7 +83,7 @@ exports.login = function(req, res, next) {
       }
       bcrypt.compare(req.body.password, tbl_users[0].password, function(err, isLogin) {
         if (isLogin){
-          var token = jwt.sign({ email: tbl_users[0].email,id: tbl_users[0].user },  secret, { expiresIn: '1h' });
+          var token = jwt.sign({ email: tbl_users[0].email,id: tbl_users[0].user_id },  secret, { expiresIn: '1h' });
           res.json({status: 'ok', message: 'login success',token});
         } else {
           res.json({status: 'error', message: 'login failed'});

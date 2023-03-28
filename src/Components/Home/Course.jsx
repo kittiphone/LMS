@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef  } from "react";
 import { Link } from "react-router-dom";
 import CourseAdd from './CourseAdd';
 import CourseDelete from './CourseDelete';
@@ -6,6 +6,24 @@ import axios from "axios";
 
 export default function Course() {
   const [courses, setCourses] = useState({ data: [] });
+  const coursesContainerRef = useRef(null);
+
+
+  const handleAddCourse = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/course/courseGet");
+  
+      if (response.status === 200) {
+        setCourses(response.data);
+
+        // Scroll to the last course after updating the state
+        const coursesArray = coursesContainerRef.current.children;
+        coursesArray[coursesArray.length - 1].scrollIntoView({ behavior: "smooth" });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchCourseData = async () => {
     try {
@@ -49,7 +67,7 @@ export default function Course() {
               with in-depth knowledge about Laos' rich culture and history.
             </p>
           </div>
-          <div className="mx-auto mt-12 grid max-w-md gap-8 px-6 sm:max-w-lg lg:max-w-7xl lg:grid-cols-2 lg:px-8">
+          <div className="mx-auto mt-12 grid max-w-md gap-8 px-6 sm:max-w-lg lg:max-w-7xl lg:grid-cols-2 lg:px-8" ref={coursesContainerRef}>
             {courses.data.map((post) => (
               <div
                 key={post.course_id}
