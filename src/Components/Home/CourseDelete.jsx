@@ -14,7 +14,7 @@ export default function CourseDelete({ courseId, courses, setCourses }) {
         cancelButtonColor: "#3085d6",
         confirmButtonText: "Yes, delete it!",
       });
-      
+
       if (result.isConfirmed) {
         const response = await axios.delete(`http://localhost:3000/course/courseDelete/${courseId}`);
         console.log(response);

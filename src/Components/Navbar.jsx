@@ -12,6 +12,7 @@ const navigation = {
   ],
 };
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -20,10 +21,12 @@ export default function Navbar() {
   // Use the useNavigate hook to handle navigation between pages
   const navigate = useNavigate();
 
-  const isLoggedIn = UserCheck();
+
+  const { isLoggedIn, firstname } = UserCheck();
+
   const userNavigation = isLoggedIn
     ? [
-        { name: "Your Profile", href: "/Profile" },
+        { name: `${firstname}'s Profile`, href: "/Profile" },
         { name: "Settings", href: "#" },
         { name: "Sign out", onClick: handleLogout },
       ]

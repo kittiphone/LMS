@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function CourseAdd(props) {
+export default function CourseUpdate({courseId}) {
   const [modalOpen, setModalOpen] = useState(false);
   const defaultValues = {
     course: "",
@@ -37,10 +37,11 @@ export default function CourseAdd(props) {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/course/courseAdd",
+      const response = await axios.put(
+        `http://localhost:3000/course/courseUpdate/${courseId}`,
         data
       );
+
       const { status } = response.data;
       if (status === "ok") {
         toast.success("Course added successfully!");
@@ -63,12 +64,12 @@ export default function CourseAdd(props) {
     <div>
    <ToastContainer />
       <label
-        htmlFor="my-modal-3"
+        htmlFor="my-modal-3-update"
         className="btn bg-gradient-to-br border-none from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium"
       >
-        Add Course
+       Update Course
       </label>
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" checked={modalOpen} onChange={() => setModalOpen(!modalOpen)} />
+      <input type="checkbox" id="my-modal-3-update" className="modal-toggle" checked={modalOpen} onChange={() => setModalOpen(!modalOpen)} />
       <div className="modal">
 
         <form
@@ -76,8 +77,9 @@ export default function CourseAdd(props) {
           className="modal-box relative w-10000"
           noValidate
         >
-          <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <h3 className="text-lg font-bold">Add Course</h3>
+          
+          <label htmlFor="my-modal-3-update" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <h3 className="text-lg font-bold"> Update Course</h3>
           <label className="block text-sm font-medium text-gray-700 pt-5">
             Course
           </label>
@@ -128,11 +130,11 @@ export default function CourseAdd(props) {
 
           <p className="py-4 flex justify-end">
             <button type="submit" className="btn btn-primary">
-              Add Course
+            Update Course
             </button>
           </p>
         </form>
-       </div>
+        </div>
     </div>
   );
 }

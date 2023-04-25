@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CourseAdd from './CourseAdd';
 import CourseDelete from './CourseDelete';
 import axios from "axios";
+import CourseUpdate from './CourseUpdate';
 
 export default function Course() {
   const [courses, setCourses] = useState({ data: [] });
@@ -25,36 +26,34 @@ export default function Course() {
     }
   };
 
-  const fetchCourseData = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/course/courseGet");
-
-      if (response.status === 200) {
-        setCourses(response.data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
-    fetchCourseData();
+    const fetchCourse = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/course/courseGet");
+  
+        if (response.status === 200) {
+          setCourses(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchCourse();
   }, []);
 
-  const handleCourseAdded = () => {
-    fetchCourseData();
-  }
+
+
 
   return (
+    
     <main>
       {/* Blog section */}
-      <div class="flex justify-center p-8">
-        <CourseAdd onCourseAdded={handleCourseAdded} />
-      </div>
+      <div className="flex justify-center p-8">
+      <CourseAdd onAddCourse={handleAddCourse} coursesContainerRef={coursesContainerRef} />
+</div>
 
- 
-  
-      <div className="relative bg-gray-50 pb-8 sm:pb-12 lg:pb-24">
+      <div className="relative bg-gray-50 pb-8 sm:pb-12 lg:pb-24" >
         <div className="relative">
 
           <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
@@ -86,18 +85,18 @@ export default function Course() {
                 <Link to={`/Course/${post.course}`}>
                   <div className="flex-1">
                     <p className="text-sm font-medium text-indigo-600">
-                      <a href={post.category.href} className="hover:underline">
+                      <div href={post.category.href} className="hover:underline">
                         {post.category.name}
-                      </a>
+                      </div>
                     </p>
-                    <a href={post.href} className="mt-2 block">
+                    <div className="mt-2 block">
                       <p className="text-xl font-semibold text-gray-900">
                         {post.title}
                       </p>
                       <p className="mt-3 text-base text-gray-500">
                         {post.preview}
                       </p>
-                    </a>
+                    </div>
                   </div>
                   </Link>
            
@@ -111,10 +110,14 @@ export default function Course() {
                     </Link>
                
                   </div>
+                  
                   <div className="mt-6 flex items-center">
-            <CourseDelete courseId={post.course_id} courses={courses} setCourses={setCourses} />
-
+            <CourseUpdate courseId={post.course_id} courses={courses} setCourses={setCourses}/>
                   </div>
+                  <div className="mt-6 flex items-center">
+            <CourseDelete courseId={post.course_id}/>
+                  </div>
+
                 </div>
               </div>
             ))}
@@ -125,5 +128,4 @@ export default function Course() {
     </main>
   );
 }
-
 

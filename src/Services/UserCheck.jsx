@@ -5,7 +5,7 @@ import { API_BASE_URL } from "../api/config";
 const UserCheck = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // <-- set initial state to false
-
+  const [firstname, setFirstname] = useState(''); 
   useEffect(() => {
     const token = localStorage.getItem('token');
     axios
@@ -22,6 +22,7 @@ const UserCheck = () => {
       .then((response) => {
         if (response.data.status === 'ok') {
           setIsLoggedIn(true); // <-- update state if authorized
+          setFirstname(response.data.decoded.firstname);
         } else {
          // localStorage.removeItem('token');
           setIsLoggedIn(false); // <-- update state if not authorized
@@ -33,7 +34,9 @@ const UserCheck = () => {
       });
   }, [navigate]);
 
-  return isLoggedIn; // <-- return the isLoggedIn state variable
+  // Return an object with both isLoggedIn and firstname properties
+
+  return { isLoggedIn, firstname };
 };
 
 export default UserCheck;
