@@ -1,12 +1,15 @@
-import { useState, useEffect,useRef  } from "react";
+import { useEffect,useRef,useContext  } from "react";
 import { Link } from "react-router-dom";
 import CourseAdd from './CourseAdd';
 import CourseDelete from './CourseDelete';
 import axios from "axios";
 import CourseUpdate from './CourseUpdate';
+import { CourseContext } from '../../helper/Courses/CourseProvider';
 
 export default function Course() {
-  const [courses, setCourses] = useState({ data: [] });
+
+  const { courses, setCourses } = useContext(CourseContext);
+
   const coursesContainerRef = useRef(null);
 
 
@@ -27,6 +30,7 @@ export default function Course() {
   };
 
   useEffect(() => {
+
     const fetchCourse = async () => {
       try {
         const response = await axios.get("http://localhost:3000/course/courseGet");
@@ -67,7 +71,7 @@ export default function Course() {
             </p>
           </div>
           <div className="mx-auto mt-12 grid max-w-md gap-8 px-6 sm:max-w-lg lg:max-w-7xl lg:grid-cols-2 lg:px-8" ref={coursesContainerRef}>
-            {courses.data.map((post) => (
+            {courses.data?.map((post) => (
               <div
                 key={post.course_id}
                 className="flex flex-col overflow-hidden rounded-lg shadow-lg"
